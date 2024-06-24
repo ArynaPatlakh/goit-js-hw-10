@@ -59,3 +59,9 @@ input[type='number'] {
   width: 354px;
   height: 34px;
 }
+
+.icon-svg{
+  color: white;
+  width: 24px;
+  height: 24px;
+}

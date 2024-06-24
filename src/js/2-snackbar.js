@@ -1,5 +1,8 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import ok from '../img/ok.svg';
+import error from '../img/error.svg';
+console.log(ok);
 
 const refs = {
   form: document.querySelector('.form'),
@@ -8,20 +11,48 @@ const refs = {
   state: document.querySelector('fieldset'),
 };
 
-refs.btn.addEventListener('submit', e => {
+refs.form.addEventListener('submit', formSabmit);
+
+function formSabmit(e) {
   e.preventDefault();
-  console.log('hi');
   let delay = refs.input.value.trim();
-  console.log(delay);
+  let value = document.querySelector('input[type = "radio"]:checked');
+  const promise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (value.value == 'fulfilled') {
+        return resolve(delay);
+      } else {
+        return reject(delay);
+      }
+    }, delay);
+  });
 
-  //     setTimeout(() => {
+  promise.then(onFulfilled).catch(onRejected);
 
-  //     const promis = new Promise(value);
-  // //     function resolve() {
-  // //       return `✅ Fulfilled promise in ${delay}ms`;
-  // //     }
-  // //     function reject() {
-  // //       return `❌ Rejected promise in ${delay}ms`;
-  // //     }
-  //   }, delay);
-});
+  function onFulfilled() {
+    iziToast.show({
+      timeout: 1000000,
+      position: 'topRight',
+      title: 'OK',
+      titleColor: 'white',
+      message: `✅ Fulfilled promise in ${delay}ms`,
+      messageColor: 'white',
+      color: '#59A10D',
+      icon: 'icon-svg',
+      iconURL: ok,
+      iconColor: 'white',
+    });
+  }
+  function onRejected() {
+    iziToast.show({
+      position: 'topRight',
+      title: 'EROR',
+      titleColor: 'white',
+      message: `❌ Rejected promise in ${delay}ms`,
+      color: '#EF4040',
+      messageColor: 'white',
+      iconURL: error,
+      iconColor: 'white',
+    });
+  }
+}
