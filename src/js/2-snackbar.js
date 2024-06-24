@@ -10,13 +10,14 @@ const refs = {
 
 refs.btn.addEventListener('submit', e => {
   e.preventDefault();
+  console.log('hi');
   let delay = refs.input.value.trim();
   console.log(delay);
+
   //     setTimeout(() => {
 
   //     const promis = new Promise(value);
   // //     function resolve() {
-  // //       console.log(delay);
   // //       return `✅ Fulfilled promise in ${delay}ms`;
   // //     }
   // //     function reject() {
