@@ -31,7 +31,6 @@ function formSabmit(e) {
 
   function onFulfilled() {
     iziToast.show({
-      timeout: 1000000,
       position: 'topRight',
       title: 'OK',
       titleColor: 'white',
